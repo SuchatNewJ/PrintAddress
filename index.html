@@ -3,46 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ENZONE | ปริ้นที่อยู่ลูกค้า</title>
+<title>ENZONE | ใบปะหน้ากล่อง</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   ENZONE — ปริ้นที่อยู่ลูกค้า  (A4 แนวนอน / LANDSCAPE)
-   A4 นอน = 297 x 210mm | margin 8mm -> พื้นที่ใช้งาน 281 x 194mm
-   - เต็มหน้า  : 281 x 194mm
-   - ครึ่งหน้า : 281 x 94mm  (บน/ล่าง เว้น 6mm  = 94+6+94 = 194)
+   ENZONE — ใบปะหน้ากล่อง  (พิมพ์ A4 แนวนอนเสมอ)
+   หน้ากระดาษ A4 นอน = 297 x 210mm | margin 8mm -> ใช้งาน 281 x 194mm
+   โหมด "เต็มหน้า"   : 1 ใบ  281 x 194mm            (กล่องใหญ่)
+   โหมด "ครึ่งหน้า"  : 2 ใบ  137 x 194mm วางซ้าย-ขวา (กล่องเล็ก)
+                       -> พับ/ตัดตามเส้นประแนวตั้งกลางหน้า
    ============================================================ */
 :root{
-  --navy:#0D2137; --navy2:#1A3A5C; --orange:#F97316; --orange-l:#FED7AA;
-  --border:#2A4A6A; --gray:#94A3B8; --red:#DC2626;
-  --bg:#F1F5F9; --card:#FFFFFF;
+  --navy:#0D2137; --navy2:#1A3A5C; --orange:#F97316;
+  --gray:#94A3B8; --red:#DC2626; --bg:#F1F5F9;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',system-ui,sans-serif;background:var(--bg);color:#0F172A;-webkit-text-size-adjust:100%}
 .num{font-family:'Inter','Sarabun',sans-serif;font-variant-numeric:tabular-nums}
 
-/* ---------- App shell ---------- */
+/* ---------- Shell ---------- */
 .topbar{background:var(--navy);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:20}
 .topbar .logo{font-weight:800;letter-spacing:.5px;font-size:16px}
 .topbar .logo span{color:var(--orange)}
 .topbar .sub{font-size:11px;color:var(--gray);margin-left:auto}
-.wrap{max-width:1320px;margin:0 auto;padding:16px;display:grid;grid-template-columns:minmax(310px,380px) 1fr;gap:16px;align-items:start}
-@media(max-width:960px){.wrap{grid-template-columns:1fr;padding:12px}}
+.wrap{max-width:1340px;margin:0 auto;padding:16px;display:grid;grid-template-columns:minmax(300px,370px) 1fr;gap:16px;align-items:start}
+@media(max-width:980px){.wrap{grid-template-columns:1fr;padding:12px}}
 
-.card{background:var(--card);border-radius:12px;box-shadow:0 1px 3px rgba(13,33,55,.10);overflow:hidden}
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(13,33,55,.10);overflow:hidden}
 .card h2{font-size:13px;font-weight:700;color:var(--navy);padding:12px 14px;border-bottom:1px solid #E2E8F0;display:flex;align-items:center;gap:8px}
 .card h2::before{content:"";width:4px;height:14px;background:var(--orange);border-radius:2px}
 .card .body{padding:14px}
 
 label.f{display:block;font-size:12px;font-weight:600;color:#475569;margin-bottom:5px}
-input[type=text],input[type=search],select,textarea{
-  width:100%;padding:11px 12px;border:1px solid #CBD5E1;border-radius:8px;font-family:inherit;font-size:15px;background:#fff}
+input[type=text],input[type=search],select,textarea{width:100%;padding:11px 12px;border:1px solid #CBD5E1;border-radius:8px;font-family:inherit;font-size:15px;background:#fff;resize:vertical}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(249,115,22,.15)}
 
-/* ---------- Customer picker ---------- */
-.list{max-height:260px;overflow-y:auto;margin-top:10px;border:1px solid #E2E8F0;border-radius:8px}
+.list{max-height:250px;overflow-y:auto;margin-top:10px;border:1px solid #E2E8F0;border-radius:8px}
 .item{width:100%;text-align:left;background:#fff;border:0;border-bottom:1px solid #F1F5F9;padding:11px 12px;cursor:pointer;font-family:inherit}
 .item:last-child{border-bottom:0}
 .item:hover{background:#F8FAFC}
@@ -51,9 +49,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange);
 .item small{display:block;font-size:11.5px;color:#64748B;margin-top:2px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{padding:24px 12px;text-align:center;color:var(--gray);font-size:13px}
 
-/* ---------- Options ---------- */
 .seg{display:flex;gap:6px;background:#F1F5F9;padding:4px;border-radius:9px}
-.seg button{flex:1;padding:9px 6px;border:0;background:transparent;border-radius:6px;font-family:inherit;font-size:12.5px;font-weight:600;color:#64748B;cursor:pointer;line-height:1.3}
+.seg button{flex:1;padding:9px 6px;border:0;background:transparent;border-radius:6px;font-family:inherit;font-size:12.5px;font-weight:700;color:#64748B;cursor:pointer;line-height:1.35}
+.seg button small{display:block;font-weight:400;font-size:10.5px;opacity:.8}
 .seg button.on{background:var(--navy);color:#fff}
 .chk{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid #E2E8F0;border-radius:9px;margin-top:8px;cursor:pointer;user-select:none}
 .chk input{width:20px;height:20px;accent-color:var(--orange);flex:none}
@@ -63,10 +61,9 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange);
 .chk.danger.on span{color:var(--red)}
 .po{margin-top:10px;padding:12px;border:1.5px dashed var(--orange);border-radius:9px;background:#FFF7ED}
 .po .f{color:#9A3412}
-.hint{font-size:11.5px;color:#64748B;margin-top:6px;line-height:1.5}
+.hint{font-size:11.5px;color:#64748B;margin-top:8px;line-height:1.55}
 .row{display:flex;gap:8px;margin-top:10px}
 .row>*{flex:1}
-
 .btn{width:100%;padding:14px;border:0;border-radius:10px;background:var(--orange);color:#fff;font-family:inherit;font-size:16px;font-weight:800;cursor:pointer;margin-top:14px;box-shadow:0 2px 0 #C2410C}
 .btn:active{transform:translateY(1px);box-shadow:0 1px 0 #C2410C}
 .btn:disabled{background:#CBD5E1;box-shadow:none;cursor:not-allowed}
@@ -78,83 +75,102 @@ details.cfg{margin-top:12px;border-top:1px dashed #E2E8F0;padding-top:10px}
 details.cfg summary{font-size:12px;color:#64748B;cursor:pointer;font-weight:600}
 details.cfg .body{padding:10px 0 0}
 
-/* ---------- Preview ---------- */
 .pv-wrap{overflow:auto;padding:16px;background:#E2E8F0;border-radius:0 0 12px 12px}
 .pv-scale{transform-origin:top left}
 
 /* ============================================================
-   LABEL — LANDSCAPE
+   SHEET (A4 นอน) + LABEL
    ============================================================ */
-.sheet{width:281mm;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.18)}
-.label{border:2.5px solid var(--navy);padding:6mm 8mm;display:flex;flex-direction:column;background:#fff;overflow:hidden}
-.label.full{height:194mm}
-.label.half{height:94mm;padding:4mm 6mm;border-width:2px}
-.label.half + .label.half{margin-top:6mm}
+.sheet{width:281mm;height:194mm;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.18);display:flex;position:relative}
 
-/* --- แถบผู้ส่ง (บนสุด เต็มความกว้าง) --- */
-.snd{display:flex;align-items:center;gap:6mm;border-bottom:2px solid var(--navy);padding-bottom:3mm;flex:none}
-.label.half .snd{padding-bottom:2mm;border-bottom-width:1.5px}
-.snd-brand{font-weight:800;color:var(--navy);font-size:15pt;letter-spacing:.5px;line-height:1.1;white-space:nowrap}
-.label.half .snd-brand{font-size:10.5pt}
-.snd-brand em{font-style:normal;color:var(--orange)}
-.snd-txt{font-size:9pt;color:#334155;line-height:1.35;border-left:2px solid #E2E8F0;padding-left:5mm;min-width:0}
-.label.half .snd-txt{font-size:7pt;padding-left:3mm}
-.snd-tag{font-size:8pt;color:#fff;background:var(--navy);padding:1.5mm 3mm;border-radius:2mm;font-weight:700;white-space:nowrap;flex:none;margin-left:auto}
-.label.half .snd-tag{font-size:6.5pt;padding:1mm 2mm}
+/* เส้นพับ/ตัด แนวตั้งกลางหน้า (โหมดครึ่ง) */
+.fold{position:absolute;top:0;bottom:0;left:50%;width:0;border-left:1px dashed #B6C2CF;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.fold::after{content:"✂ พับ / ตัด";position:absolute;top:2mm;transform:translateX(-50%);left:50%;font-size:6.5pt;color:#94A3B8;background:#fff;padding:0 2mm;letter-spacing:1px;white-space:nowrap}
 
-/* --- ตัวหลัก: ซ้าย = ผู้รับ / ขวา = PO + ป้ายเตือน --- */
-.main{flex:1;display:flex;gap:7mm;min-height:0;padding-top:5mm}
-.label.half .main{gap:4mm;padding-top:3mm}
-.to{flex:1;min-width:0;display:flex;flex-direction:column}
-.side{width:95mm;flex:none;display:flex;flex-direction:column;gap:4mm}
-.label.half .side{width:80mm;gap:2.5mm}
-.side:empty{display:none}
+.label{background:#fff;display:flex;flex-direction:column;overflow:hidden;border:2.5px solid var(--navy);border-radius:2mm}
+.label.full{width:281mm;height:194mm;padding:8mm 10mm}
+.label.half{width:137mm;height:194mm;padding:6mm 6.5mm;border-width:2px}
+.sheet.two{gap:7mm}
+.slot{width:137mm;flex:none}
 
-.to-hd{display:inline-block;align-self:flex-start;background:var(--orange);color:#fff;font-weight:800;font-size:11pt;padding:1.5mm 4mm;border-radius:1.5mm;letter-spacing:1px}
-.label.half .to-hd{font-size:8pt;padding:.8mm 2.5mm}
-.to-co{font-size:30pt;font-weight:800;color:var(--navy);line-height:1.15;margin-top:4mm;word-break:break-word}
-.label.half .to-co{font-size:15pt;margin-top:2mm;line-height:1.2}
-.to-br{font-size:18pt;font-weight:700;color:var(--orange);margin-top:1.5mm;line-height:1.2}
-.label.half .to-br{font-size:10.5pt;margin-top:.8mm}
-.to-ad{font-size:18pt;line-height:1.5;color:#0F172A;margin-top:4mm;word-break:break-word}
-.label.half .to-ad{font-size:10.5pt;line-height:1.4;margin-top:2mm}
-.to-meta{margin-top:auto;padding-top:3mm;font-size:14pt;line-height:1.5;color:#1E293B;display:flex;gap:8mm;flex-wrap:wrap}
-.label.half .to-meta{font-size:9pt;gap:5mm;padding-top:2mm}
-.to-meta b{color:var(--navy)}
-.to-meta .num{font-weight:700}
+/* ---- FROM (จาก) ---- */
+.from{display:flex;align-items:flex-start;gap:5mm;flex:none;padding-bottom:4mm;border-bottom:2.5px solid var(--navy)}
+.label.half .from{padding-bottom:3mm;gap:3mm;border-bottom-width:2px;flex-wrap:wrap}
+.from-tag{background:var(--navy);color:#fff;font-size:10pt;font-weight:800;padding:1.5mm 4mm;border-radius:1.5mm;letter-spacing:1px;flex:none}
+.label.half .from-tag{font-size:8pt;padding:1mm 2.5mm}
+.from-txt{min-width:0;flex:1}
+.from-brand{font-size:13pt;font-weight:800;color:var(--navy);line-height:1.2}
+.from-brand em{font-style:normal;color:var(--orange)}
+.label.half .from-brand{font-size:10.5pt}
+.from-lines{font-size:10.5pt;line-height:1.45;color:#334155;margin-top:1mm}
+.label.half .from-lines{font-size:8pt;line-height:1.4}
+.from-lines .num{font-weight:700;color:var(--navy)}
 
-/* --- PO box --- */
-.po-box{border:2.5px solid var(--navy);border-radius:2mm;padding:4mm 5mm;background:#F8FAFC;flex:none;text-align:center}
-.label.half .po-box{padding:2mm 3mm;border-width:2px}
-.po-box .k{font-size:10pt;font-weight:800;color:#fff;background:var(--navy);padding:1mm 3mm;border-radius:1.5mm;display:inline-block}
-.label.half .po-box .k{font-size:7pt;padding:.6mm 2mm}
-.po-box .v{font-size:26pt;font-weight:800;color:var(--navy);letter-spacing:1px;word-break:break-all;margin-top:2.5mm;line-height:1.1}
-.label.half .po-box .v{font-size:14pt;margin-top:1.2mm}
+/* ---- TO (นำส่ง) ---- */
+.to{flex:1;min-height:0;padding-top:6mm;display:flex;flex-direction:column}
+.label.half .to{padding-top:4mm}
+.to-tag{align-self:flex-start;background:var(--orange);color:#fff;font-size:12pt;font-weight:800;padding:1.5mm 5mm;border-radius:1.5mm;letter-spacing:2px;flex:none}
+.label.half .to-tag{font-size:9pt;padding:1mm 3.5mm;letter-spacing:1px}
+.to-person{font-size:19pt;font-weight:700;color:#1E293B;margin-top:4mm;line-height:1.25}
+.label.half .to-person{font-size:12pt;margin-top:3mm}
+.to-co{font-size:27pt;font-weight:800;color:var(--navy);line-height:1.2;margin-top:2mm;word-break:break-word}
+.label.half .to-co{font-size:15pt;margin-top:1.5mm;line-height:1.25}
+.to-co .br{color:var(--orange)}
+.to-ad{font-size:19pt;line-height:1.5;color:#0F172A;margin-top:3.5mm;word-break:break-word}
+.label.half .to-ad{font-size:11.5pt;line-height:1.45;margin-top:2.5mm}
+.to-tel{font-size:16pt;margin-top:3mm;color:#1E293B}
+.label.half .to-tel{font-size:10pt;margin-top:2mm}
+.to-tel b{color:var(--navy);font-weight:700}
+.to-tel .num{font-weight:700}
 
-/* --- ป้ายเตือน --- */
-.bd{border-radius:2mm;padding:4mm;display:flex;align-items:center;justify-content:center;gap:4mm;text-align:center;flex:1}
-.label.half .bd{padding:1.5mm 2mm;gap:2mm}
-.bd-bill{border:2.5px dashed var(--navy);color:var(--navy);background:#F8FAFC}
-.bd-bill .t{font-size:17pt;font-weight:800;line-height:1.15}
-.bd-bill .s{font-size:8pt;color:#64748B;font-weight:600;display:block;letter-spacing:.5px}
-.label.half .bd-bill{border-width:1.5px}
-.label.half .bd-bill .t{font-size:9.5pt}
-.label.half .bd-bill .s{font-size:6pt}
-.bd-frag{border:3px solid var(--red);background:#FEF2F2;color:var(--red)}
-.bd-frag .t{font-size:32pt;font-weight:800;line-height:1.05;letter-spacing:1px}
-.bd-frag .s{font-size:10pt;font-weight:800;display:block;letter-spacing:3px}
-.label.half .bd-frag{border-width:2px}
-.label.half .bd-frag .t{font-size:15pt}
-.label.half .bd-frag .s{font-size:6.5pt;letter-spacing:1px}
-.bd .ic{font-size:26pt;line-height:1}
-.label.half .bd .ic{font-size:12pt}
+/* ---- แถบล่าง : บิล / PO / ระวังแตก ---- */
+.marks{margin-top:auto;padding-top:5mm;display:flex;gap:5mm;align-items:stretch;flex:none}
+.label.half .marks{padding-top:4mm;gap:3mm;flex-direction:column}
+.mk{border-radius:2mm;padding:4mm 5mm;display:flex;align-items:center;justify-content:center;gap:3.5mm;text-align:center}
+.label.half .mk{padding:2.5mm 3mm;gap:2.5mm}
 
-.foot{border-top:1px solid #CBD5E1;margin-top:3mm;padding-top:1.5mm;display:flex;justify-content:space-between;font-size:7.5pt;color:#94A3B8;flex:none}
-.label.half .foot{margin-top:2mm;padding-top:1mm;font-size:6pt}
+.mk-bill{border:2.5px dashed var(--navy);color:var(--navy);background:#F8FAFC;flex:1}
+.mk-bill .t{font-size:19pt;font-weight:800;line-height:1.15;white-space:nowrap}
+.mk-bill .s{display:block;font-size:8pt;font-weight:600;color:#64748B;letter-spacing:1px}
+.label.half .mk-bill{border-width:2px}
+.label.half .mk-bill .t{font-size:12pt}
+.label.half .mk-bill .s{font-size:6.5pt}
 
-.ph{align-items:center;justify-content:center;color:#94A3B8;font-size:16pt;border-style:dashed}
+.mk-po{border:2.5px solid var(--navy);background:#fff;flex:1;flex-direction:column;gap:2mm;padding:3.5mm 4mm}
+.mk-po .k{font-size:10pt;font-weight:800;color:#fff;background:var(--navy);padding:1mm 3.5mm;border-radius:1.5mm;letter-spacing:.5px;flex:none}
+.po-list{display:flex;flex-direction:column;gap:1.8mm;width:100%;align-items:stretch}
+.po-line{display:flex;align-items:center;gap:2.5mm;justify-content:center}
+.po-line .i{font-size:9pt;font-weight:800;color:#fff;background:var(--orange);width:5mm;height:5mm;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.po-line .n{font-size:22pt;font-weight:800;color:var(--navy);letter-spacing:1px;line-height:1.15;word-break:break-all}
+.po-list.n3 .po-line .n{font-size:17pt}
+.po-list.n3 .po-line .i{width:4.5mm;height:4.5mm;font-size:8pt}
+.po-list.n4 .po-line .n{font-size:14pt}
+.po-list.n4 .po-line .i{width:4mm;height:4mm;font-size:7pt}
+.po-list.n4{gap:1.2mm}
+.po-line.blank{border-bottom:2px solid var(--navy);min-height:8mm;min-width:42mm}
+.label.half .mk-po{border-width:2px;gap:1.2mm;padding:2.5mm 3mm}
+.label.half .mk-po .k{font-size:7.5pt;padding:.7mm 2.5mm}
+.label.half .po-list{gap:1.2mm}
+.label.half .po-line{gap:1.8mm}
+.label.half .po-line .i{width:3.6mm;height:3.6mm;font-size:6.5pt}
+.label.half .po-line .n{font-size:13pt}
+.label.half .po-list.n3 .po-line .n{font-size:10.5pt}
+.label.half .po-list.n4 .po-line .n{font-size:9pt}
+.label.half .po-list.n4 .po-line .i{width:3mm;height:3mm;font-size:5.5pt}
+.label.half .po-line.blank{min-height:5.5mm;min-width:30mm}
 
-/* ---------- PRINT (LANDSCAPE) ---------- */
+.mk-frag{border:3px solid var(--red);background:#FEF2F2;color:var(--red);flex:1.4}
+.mk-frag .t{font-size:34pt;font-weight:800;line-height:1.05;letter-spacing:1px;white-space:nowrap}
+.mk-frag .s{display:block;font-size:10pt;font-weight:800;letter-spacing:4px}
+.label.half .mk-frag{border-width:2.5px;flex:none}
+.label.half .mk-frag .t{font-size:20pt}
+.label.half .mk-frag .s{font-size:7pt;letter-spacing:2px}
+.mk .ic{font-size:26pt;line-height:1}
+.label.half .mk .ic{font-size:16pt}
+
+.ph{align-items:center;justify-content:center;color:#94A3B8;font-size:16pt;border-style:dashed;text-align:center}
+
+/* ---------- PRINT ---------- */
 @media print{
   @page{size:A4 landscape;margin:8mm}
   body{background:#fff}
@@ -162,9 +178,7 @@ details.cfg .body{padding:10px 0 0}
   .wrap{display:block;padding:0;max-width:none}
   .card,.pv-wrap{box-shadow:none;border-radius:0;padding:0;background:#fff;overflow:visible}
   .pv-scale{transform:none!important}
-  .sheet{width:auto;box-shadow:none}
-  .label.full{height:194mm}
-  .label.half{height:94mm}
+  .sheet{box-shadow:none;width:281mm;height:194mm}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
@@ -173,15 +187,15 @@ details.cfg .body{padding:10px 0 0}
 
 <div class="topbar no-print">
   <div class="logo">ENZONE<span> SERVICE</span></div>
-  <div class="sub">ปริ้นที่อยู่ลูกค้า · A4 แนวนอน</div>
+  <div class="sub">ใบปะหน้ากล่อง · A4 แนวนอน</div>
 </div>
 
 <div class="wrap">
 
-  <!-- ================= LEFT : ตัวเลือก ================= -->
+  <!-- ============ ซ้าย : ตัวเลือก ============ -->
   <div class="pane-left">
     <div class="card">
-      <h2>1. เลือกบริษัท</h2>
+      <h2>1. เลือกบริษัทผู้รับ</h2>
       <div class="body">
         <input type="search" id="q" placeholder="🔍 พิมพ์ชื่อบริษัท / สาขา…" autocomplete="off">
         <div class="list" id="list"><div class="empty">กำลังโหลดข้อมูล…</div></div>
@@ -190,34 +204,33 @@ details.cfg .body{padding:10px 0 0}
     </div>
 
     <div class="card" style="margin-top:14px">
-      <h2>2. รูปแบบ &amp; ตัวเลือก</h2>
+      <h2>2. รูปแบบการพิมพ์</h2>
       <div class="body">
-        <label class="f">ขนาดกระดาษ (แนวนอน)</label>
         <div class="seg" id="seg">
-          <button data-size="full" class="on">A4 เต็มหน้า<br><small style="font-weight:400">297 × 210 mm</small></button>
-          <button data-size="half">A4 ครึ่งหน้า<br><small style="font-weight:400">297 × 105 mm</small></button>
+          <button data-size="full" class="on">เต็มหน้า<small>A4 นอน · กล่องใหญ่</small></button>
+          <button data-size="half">ครึ่งหน้า<small>พับแนวตั้ง · กล่องเล็ก</small></button>
         </div>
+        <div class="hint" id="sizeHint">พิมพ์ 1 ใบเต็มแผ่น A4 แนวนอน (297 × 210 มม.)</div>
 
-        <div id="copiesBox" style="display:none;margin-top:10px">
-          <label class="f">จำนวนดวงต่อแผ่น (ครึ่งหน้า)</label>
+        <div id="copiesBox" style="display:none;margin-top:6px">
+          <label class="f">จำนวนใบต่อแผ่น</label>
           <select id="copies">
-            <option value="1">1 ดวง — ตัดครึ่งบน</option>
-            <option value="2">2 ดวง — ดวงเดียวกัน 2 ใบ/แผ่น</option>
+            <option value="2">2 ใบ (เหมือนกัน) — คุ้มกระดาษ</option>
+            <option value="1">1 ใบ (ครึ่งซ้าย)</option>
           </select>
         </div>
 
-        <label class="chk on" id="lbSnd"><input type="checkbox" id="cSnd" checked><span>แสดงที่อยู่ผู้ส่ง (ENZONE)</span></label>
-        <label class="chk" id="lbBill"><input type="checkbox" id="cBill"><span>📄 มีบิลอยู่ในกล่อง</span></label>
-        <label class="chk danger" id="lbFrag"><input type="checkbox" id="cFrag"><span>⚠️ ระวังแตก (ตัวแดงใหญ่)</span></label>
+        <label class="chk" id="lbBill"><input type="checkbox" id="cBill"><span>📄 มีบิลในกล่อง</span></label>
+        <label class="chk danger" id="lbFrag"><input type="checkbox" id="cFrag"><span>⚠️ ระวังแตก (แดงตัวใหญ่)</span></label>
 
         <div class="po" id="poBox" style="display:none">
-          <label class="f">เลข PO <span style="font-weight:400">(เฉพาะ ศรีตรัง สกลนคร)</span></label>
-          <input type="text" id="po" class="num" placeholder="เช่น 3800123456">
-          <div class="hint">ตรวจพบว่าเป็นโรงงานศรีตรัง สกลนคร → ต้องระบุเลข PO บนหน้ากล่อง</div>
+          <label class="f">เลข PO <span style="font-weight:400">— ศรีตรัง สกลนคร เท่านั้น</span></label>
+          <textarea id="po" class="num" rows="3" placeholder="1 เลขต่อ 1 บรรทัด เช่น&#10;4500123456&#10;4500123457"></textarea>
+          <div class="hint">ใส่ได้หลายเลข — <b>ขึ้นบรรทัดใหม่</b> (หรือคั่นด้วย , ก็ได้) แต่ละเลขจะพิมพ์แยกบรรทัดพร้อมเลขลำดับ · เว้นว่าง = เว้นช่องให้เขียนมือ</div>
         </div>
 
-        <button class="btn" id="print" disabled>🖨️ ปริ้นที่อยู่</button>
-        <div class="hint">ตอนสั่งพิมพ์: เลือก <b>แนวนอน (Landscape)</b> · Margin = ค่าเริ่มต้น · เปิด "พิมพ์กราฟิกพื้นหลัง"</div>
+        <button class="btn" id="print" disabled>🖨️ พิมพ์ใบปะหน้า</button>
+        <div class="hint">ในหน้าต่างพิมพ์: เลือก <b>แนวนอน</b> · ระยะขอบ = <b>ค่าเริ่มต้น</b> · ติ๊ก <b>“พิมพ์กราฟิกพื้นหลัง”</b> เพื่อให้สีแดงออกครบ</div>
 
         <details class="cfg">
           <summary>⚙️ ตั้งค่า / แหล่งข้อมูล</summary>
@@ -225,17 +238,17 @@ details.cfg .body{padding:10px 0 0}
             <label class="f">Apps Script Web App URL</label>
             <input type="text" id="url" placeholder="https://script.google.com/macros/s/.../exec">
             <div class="row">
-              <button class="btn ghost" id="reload" style="margin:0">↻ โหลดข้อมูลใหม่</button>
-              <button class="btn ghost" id="demo" style="margin:0">ใช้ข้อมูลตัวอย่าง</button>
+              <button class="btn ghost" id="reload" style="margin:0">↻ โหลดใหม่</button>
+              <button class="btn ghost" id="demo" style="margin:0">ข้อมูลตัวอย่าง</button>
             </div>
-            <div class="hint">แนะนำ: ใส่ URL ลงในตัวแปร <code>APPS_SCRIPT_URL</code> ในโค้ดไฟล์นี้ครั้งเดียว จะได้ไม่ต้องกรอกทุกครั้ง</div>
+            <div class="hint">ใส่ URL ไว้ในตัวแปร <code>APPS_SCRIPT_URL</code> ในไฟล์ครั้งเดียว จะไม่ต้องกรอกซ้ำ</div>
           </div>
         </details>
       </div>
     </div>
   </div>
 
-  <!-- ================= RIGHT : ตัวอย่างก่อนพิมพ์ ================= -->
+  <!-- ============ ขวา : พรีวิว ============ -->
   <div class="card">
     <h2 class="pv-hd">3. ตัวอย่างก่อนพิมพ์</h2>
     <div class="pv-wrap" id="pvWrap">
@@ -249,31 +262,30 @@ details.cfg .body{padding:10px 0 0}
 
 <script>
 /* ============================================================
-   ⚙️ CONFIG — แก้ตรงนี้
+   ⚙️ CONFIG
    ============================================================ */
-const APPS_SCRIPT_URL = "";   // ← วาง URL Web App ของคุณตรงนี้ เช่น "https://script.google.com/macros/s/AKfy.../exec"
+const APPS_SCRIPT_URL = "";   // ← วาง URL Web App ของชีท Address ตรงนี้
 
 const SENDER = {
-  name  : "หจก. เอ็นโซน เซอร์วิส (ENZONE SERVICE LP)",
-  addr  : "(กรอกที่อยู่ ENZONE ตรงนี้) อ.เมือง จ.อุดรธานี 41000",
-  phone : "โทร. 0X-XXX-XXXX"
+  name  : "ห้างหุ้นส่วนจำกัด เอ็นโซน เซอร์วิส (สาขา 00001)",
+  line1 : "111/9 หมู่ 4 ถนนนิตโย ตำบลหนองบัว",
+  line2 : "อำเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
+  tel   : "096-449-9469"
 };
 
-// เงื่อนไข: บริษัทไหนต้องโชว์ช่อง PO (ต้องมีครบทุกคำในชุด)
+// บริษัท/สาขาที่ต้องมีกล่อง PO (ต้องพบครบทุกคำในชุด)
 const PO_RULES = [ ["ศรีตรัง","สกลนคร"] ];
 
 /* ============================================================ */
 const $ = s => document.querySelector(s);
-const state = { rows:[], sel:null, size:"full", copies:1 };
+const state = { rows:[], sel:null, size:"full", copies:2 };
 
 const MAP = {
   company:["บริษัท","ชื่อบริษัท","ชื่อลูกค้า","ลูกค้า","company","name","customer"],
   branch :["สาขา","branch","site","โรงงาน","plant"],
   address:["ที่อยู่","address","addr","ที่อยู่จัดส่ง"],
   contact:["ผู้ติดต่อ","ผู้รับ","ชื่อผู้รับ","contact","attn"],
-  phone  :["โทร","เบอร์โทร","เบอร์","phone","tel","mobile"],
-  taxid  :["เลขผู้เสียภาษี","taxid","tax id"],
-  note   :["หมายเหตุ","note","remark"]
+  phone  :["โทร","เบอร์โทร","เบอร์","phone","tel","mobile"]
 };
 const norm = s => String(s??"").trim().toLowerCase().replace(/\s+/g,"");
 function pick(obj, keys){
@@ -287,18 +299,18 @@ function pick(obj, keys){
 }
 const shape = raw => raw.map(o=>({
   company:pick(o,MAP.company), branch:pick(o,MAP.branch), address:pick(o,MAP.address),
-  contact:pick(o,MAP.contact), phone:pick(o,MAP.phone), taxid:pick(o,MAP.taxid), note:pick(o,MAP.note)
+  contact:pick(o,MAP.contact), phone:pick(o,MAP.phone)
 })).filter(r => r.company || r.address);
 
 const needPO = r => {
   const t = norm(r.company+" "+r.branch+" "+r.address);
-  return PO_RULES.some(words => words.every(w => t.includes(norm(w))));
+  return PO_RULES.some(ws => ws.every(w => t.includes(norm(w))));
 };
 
 const DEMO = [
-  {"บริษัท":"บจก. ศรีตรังแอโกรอินดัสทรี (มหาชน)","สาขา":"โรงงาน สกลนคร","ที่อยู่":"เลขที่ 199 หมู่ 5 ต.ธาตุนาเวง อ.เมืองสกลนคร จ.สกลนคร 47000","ผู้ติดต่อ":"ฝ่ายจัดซื้อ","โทร":"042-000-000"},
-  {"บริษัท":"บจก. ศรีตรังแอโกรอินดัสทรี (มหาชน)","สาขา":"โรงงาน พิษณุโลก","ที่อยู่":"เลขที่ 88 หมู่ 3 ต.วังพิกุล อ.วังทอง จ.พิษณุโลก 65130","ผู้ติดต่อ":"แผนกซ่อมบำรุง","โทร":"055-000-000"},
-  {"บริษัท":"บจก. ไทยฮั้ว ยางพารา","สาขา":"โรงงาน บุรีรัมย์","ที่อยู่":"เลขที่ 123 หมู่ 8 ต.อิสาณ อ.เมืองบุรีรัมย์ จ.บุรีรัมย์ 31000","ผู้ติดต่อ":"คุณสมชาย","โทร":"044-000-000"}
+  {"บริษัท":"บริษัท ศรีตรังแอโกรอินดัสทรี จำกัด (มหาชน)","สาขา":"สาขาสกลนคร","ที่อยู่":"192 หมู่ที่ 9 ต.นาเพียง อ.กุสุมาลย์ จ.สกลนคร 47230","ผู้ติดต่อ":"คุณอุมาภรณ์ ดวงพรหม","โทร":"042-091-001 ต่อ 1301, 098-156-4291"},
+  {"บริษัท":"บริษัท ศรีตรังแอโกรอินดัสทรี จำกัด (มหาชน)","สาขา":"สาขาพิษณุโลก","ที่อยู่":"88 หมู่ 3 ต.วังพิกุล อ.วังทอง จ.พิษณุโลก 65130","ผู้ติดต่อ":"แผนกซ่อมบำรุง","โทร":"055-000-000"},
+  {"บริษัท":"บริษัท ไทยฮั้วยางพารา จำกัด (มหาชน)","สาขา":"สาขาบุรีรัมย์","ที่อยู่":"123 หมู่ 8 ต.อิสาณ อ.เมืองบุรีรัมย์ จ.บุรีรัมย์ 31000","ผู้ติดต่อ":"คุณสมชาย","โทร":"044-000-000"}
 ];
 
 function setStatus(msg, ok){
@@ -311,7 +323,7 @@ async function load(){
   const url = ($("#url").value || "").trim();
   if(!url){
     state.rows = shape(DEMO);
-    setStatus("ยังไม่ได้ตั้งค่า URL → กำลังแสดงข้อมูลตัวอย่าง", false);
+    setStatus("ยังไม่ได้ตั้งค่า URL → แสดงข้อมูลตัวอย่าง", false);
     render(); return;
   }
   $("#list").innerHTML = '<div class="empty">กำลังโหลดข้อมูล…</div>';
@@ -334,7 +346,7 @@ async function load(){
     setTimeout(()=>setStatus(""), 2500);
   }catch(e){
     state.rows = shape(DEMO);
-    setStatus("โหลดไม่สำเร็จ (" + e.message + ") → ใช้ข้อมูลตัวอย่างแทน", false);
+    setStatus("โหลดไม่สำเร็จ (" + e.message + ") → ใช้ข้อมูลตัวอย่าง", false);
   }
   render();
 }
@@ -345,7 +357,7 @@ function render(){
   const q = norm($("#q").value);
   const hits = state.rows.filter(r => !q || norm(r.company+r.branch+r.address+r.contact).includes(q));
   const box = $("#list");
-  if(!hits.length){ box.innerHTML = '<div class="empty">ไม่พบข้อมูลที่ตรงกับคำค้นหา</div>'; return; }
+  if(!hits.length){ box.innerHTML = '<div class="empty">ไม่พบข้อมูล</div>'; return; }
   box.innerHTML = "";
   hits.forEach(r=>{
     const b = document.createElement("button");
@@ -356,56 +368,58 @@ function render(){
   });
 }
 
-/* ---------- วาดใบปริ้น (LANDSCAPE) ---------- */
+/* ---------- ใบปะหน้า ---------- */
 function labelHTML(r, half){
-  const snd = $("#cSnd").checked ? `
-    <div class="snd">
-      <div class="snd-brand">EN<em>ZONE</em> SERVICE</div>
-      <div class="snd-txt">${esc(SENDER.name)}<br>${esc(SENDER.addr)} · ${esc(SENDER.phone)}</div>
-      <div class="snd-tag">ผู้ส่ง / FROM</div>
-    </div>` : "";
-
-  const po = (needPO(r) && $("#po").value.trim()) ? `
-    <div class="po-box">
-      <div class="k">PO No.</div>
-      <div class="v num">${esc($("#po").value.trim())}</div>
-    </div>` : "";
+  const from = `
+    <div class="from">
+      <div class="from-tag">จาก / FROM</div>
+      <div class="from-txt">
+        <div class="from-brand">EN<em>ZONE</em> SERVICE</div>
+        <div class="from-lines">
+          ${esc(SENDER.name)}<br>
+          ${esc(SENDER.line1)}<br>
+          ${esc(SENDER.line2)}<br>
+          โทร <span class="num">${esc(SENDER.tel)}</span>
+        </div>
+      </div>
+    </div>`;
 
   const bill = $("#cBill").checked ? `
-    <div class="bd bd-bill">
+    <div class="mk mk-bill">
       <div class="ic">📄</div>
-      <div><div class="t">มีบิลอยู่ในกล่อง</div><span class="s">INVOICE ENCLOSED</span></div>
+      <div><div class="t">มีบิลในกล่อง</div><span class="s">INVOICE ENCLOSED</span></div>
+    </div>` : "";
+
+  const poNums = $("#po").value.split(/[\n,;]+/).map(s=>s.trim()).filter(Boolean);
+  const multi  = poNums.length > 1;
+  const sizeCls = poNums.length >= 4 ? " n4" : poNums.length === 3 ? " n3" : "";
+  const poLines = poNums.length
+    ? poNums.map((n,i)=>`<div class="po-line">${multi?`<span class="i num">${i+1}</span>`:""}<span class="n num">${esc(n)}</span></div>`).join("")
+    : `<div class="po-line blank"></div>`;
+  const po = needPO(r) ? `
+    <div class="mk mk-po">
+      <div class="k">PO No.${multi ? " ("+poNums.length+" ใบ)" : ""}</div>
+      <div class="po-list${sizeCls}">${poLines}</div>
     </div>` : "";
 
   const frag = $("#cFrag").checked ? `
-    <div class="bd bd-frag">
+    <div class="mk mk-frag">
       <div class="ic">⚠️</div>
       <div><div class="t">ระวังแตก</div><span class="s">FRAGILE</span></div>
     </div>` : "";
 
-  const side = (po||bill||frag) ? `<div class="side">${po}${frag}${bill}</div>` : "";
-
-  const meta = [
-    r.contact ? `<div><b>ผู้ติดต่อ:</b> ${esc(r.contact)}</div>` : "",
-    r.phone   ? `<div><b>โทร:</b> <span class="num">${esc(r.phone)}</span></div>` : ""
-  ].join("");
-
-  const d = new Date();
-  const dt = String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0")+"/"+(d.getFullYear()+543);
+  const marks = (bill||po||frag) ? `<div class="marks">${bill}${po}${frag}</div>` : "";
 
   return `<div class="label ${half?"half":"full"}">
-    ${snd}
-    <div class="main">
-      <div class="to">
-        <div class="to-hd">ผู้รับ / TO</div>
-        <div class="to-co">${esc(r.company)}</div>
-        ${r.branch ? `<div class="to-br">${esc(r.branch)}</div>` : ""}
-        <div class="to-ad">${esc(r.address)}</div>
-        ${meta ? `<div class="to-meta">${meta}</div>` : ""}
-      </div>
-      ${side}
+    ${from}
+    <div class="to">
+      <div class="to-tag">นำส่ง / TO</div>
+      ${r.contact ? `<div class="to-person">${esc(r.contact)}</div>` : ""}
+      <div class="to-co">${esc(r.company)}${r.branch ? ` <span class="br">${esc(r.branch)}</span>` : ""}</div>
+      <div class="to-ad">${esc(r.address)}</div>
+      ${r.phone ? `<div class="to-tel"><b>โทร</b> <span class="num">${esc(r.phone)}</span></div>` : ""}
     </div>
-    <div class="foot"><span>ENZONE SERVICE LP</span><span class="num">${dt}</span></div>
+    ${marks}
   </div>`;
 }
 
@@ -415,21 +429,25 @@ function draw(){
   $("#poBox").style.display = (r && needPO(r)) ? "block" : "none";
 
   if(!r){
-    sheet.innerHTML = '<div class="label full ph">← เลือกบริษัทจากรายการ</div>';
+    sheet.className = "sheet";
+    sheet.innerHTML = '<div class="label full ph">← เลือกบริษัทผู้รับจากรายการ</div>';
     fit(); return;
   }
-  const half = state.size === "half";
-  sheet.innerHTML = (half && state.copies === 2)
-    ? labelHTML(r,true) + labelHTML(r,true)
-    : labelHTML(r, half);
+  if(state.size === "half"){
+    sheet.className = "sheet two";
+    const one = `<div class="slot">${labelHTML(r,true)}</div>`;
+    const two = state.copies === 2 ? one : '<div class="slot"></div>';
+    sheet.innerHTML = '<div class="fold"></div>' + one + two;
+  }else{
+    sheet.className = "sheet";
+    sheet.innerHTML = labelHTML(r,false);
+  }
   fit();
 }
 
 function fit(){
   const wrap = $("#pvWrap"), scale = $("#pvScale"), sheet = $("#sheet");
-  const w = wrap.clientWidth - 32;
-  const sw = sheet.offsetWidth || 1062;
-  const s = Math.min(1, w / sw);
+  const s = Math.min(1, (wrap.clientWidth - 32) / (sheet.offsetWidth || 1062));
   scale.style.transform = "scale(" + s + ")";
   wrap.style.height = (sheet.offsetHeight * s + 32) + "px";
 }
@@ -441,11 +459,15 @@ $("#seg").addEventListener("click", e=>{
   [...$("#seg").children].forEach(x=>x.classList.remove("on"));
   b.classList.add("on");
   state.size = b.dataset.size;
-  $("#copiesBox").style.display = state.size==="half" ? "block" : "none";
+  const half = state.size === "half";
+  $("#copiesBox").style.display = half ? "block" : "none";
+  $("#sizeHint").innerHTML = half
+    ? "พิมพ์ A4 แนวนอน แล้ว<b>พับ/ตัดตามเส้นประแนวตั้ง</b> → ได้ใบขนาด 148.5 × 210 มม. (ด้านยาวเพียง 21 ซม. เหมาะกับกล่องเล็ก)"
+    : "พิมพ์ 1 ใบเต็มแผ่น A4 แนวนอน (297 × 210 มม.)";
   draw();
 });
 $("#copies").addEventListener("change", e=>{ state.copies = +e.target.value; draw(); });
-["cSnd","cBill","cFrag"].forEach(id=>{
+["cBill","cFrag"].forEach(id=>{
   $("#"+id).addEventListener("change", e=>{
     e.target.closest(".chk").classList.toggle("on", e.target.checked);
     draw();
