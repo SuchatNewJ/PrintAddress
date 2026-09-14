@@ -80,61 +80,88 @@ details.cfg .body{padding:10px 0 0}
 
 /* ============================================================
    SHEET (A4 นอน) + LABEL
+   โหมด full   : 1 ใบ  281 × 194mm
+   โหมด half   : 2 ใบ  137 × 194mm (ตัดแนวตั้ง)
+   โหมด quarter: 4 ใบ  137 ×  94mm (ตัดแนวตั้ง + แนวนอน)
    ============================================================ */
 .sheet{width:281mm;height:194mm;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.18);display:flex;position:relative}
+.sheet.two{gap:7mm}
+.sheet.four{display:grid;grid-template-columns:137mm 137mm;grid-template-rows:94mm 94mm;gap:6mm 7mm;height:194mm}
 
-/* เส้นพับ/ตัด แนวตั้งกลางหน้า (โหมดครึ่ง) */
-.fold{position:absolute;top:0;bottom:0;left:50%;width:0;border-left:1px dashed #B6C2CF;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.fold::after{content:"✂ พับ / ตัด";position:absolute;top:2mm;transform:translateX(-50%);left:50%;font-size:6.5pt;color:#94A3B8;background:#fff;padding:0 2mm;letter-spacing:1px;white-space:nowrap}
+/* เส้นตัด — โหมด half (แนวตั้ง) */
+.fold{position:absolute;top:0;bottom:0;left:50%;width:0;border-left:1.5px dashed #B6C2CF;pointer-events:none;z-index:5}
+.fold::after{content:"✂ ตัด";position:absolute;top:2mm;left:50%;transform:translateX(-50%);font-size:6pt;color:#94A3B8;background:#fff;padding:0 1.5mm;white-space:nowrap}
+
+/* เส้นตัด — โหมด quarter (แนวตั้ง + แนวนอน) */
+.fold-v{position:absolute;top:0;bottom:0;left:50%;width:0;border-left:1.5px dashed #B6C2CF;pointer-events:none;z-index:5}
+.fold-v::after{content:"✂";position:absolute;top:2mm;left:50%;transform:translateX(-50%);font-size:7pt;color:#94A3B8;background:#fff;padding:0 .5mm}
+.fold-h{position:absolute;left:0;right:0;top:50%;height:0;border-top:1.5px dashed #B6C2CF;pointer-events:none;z-index:5}
+.fold-h::after{content:"✂";position:absolute;left:2mm;top:50%;transform:translateY(-50%);font-size:7pt;color:#94A3B8;background:#fff;padding:.3mm 0}
 
 .label{background:#fff;display:flex;flex-direction:column;overflow:hidden;border:2.5px solid var(--navy);border-radius:2mm}
 .label.full{width:281mm;height:194mm;padding:8mm 10mm}
 .label.half{width:137mm;height:194mm;padding:6mm 6.5mm;border-width:2px}
-.sheet.two{gap:7mm}
+.label.quarter{width:137mm;height:94mm;padding:3mm 3.5mm;border-width:2px}
 .slot{width:137mm;flex:none}
+.slot.quarter{width:137mm;height:94mm}
 
 /* ---- FROM (จาก) ---- */
 .from{display:flex;align-items:flex-start;gap:5mm;flex:none;padding-bottom:4mm;border-bottom:2.5px solid var(--navy)}
-.label.half .from{padding-bottom:3mm;gap:3mm;border-bottom-width:2px;flex-wrap:wrap}
+.label.half    .from{padding-bottom:3mm;gap:3mm;border-bottom-width:2px;flex-wrap:wrap}
+.label.quarter .from{padding-bottom:1.5mm;gap:2mm;border-bottom-width:1.5px;align-items:center;flex-wrap:nowrap}
 .from-tag{background:var(--navy);color:#fff;font-size:10pt;font-weight:800;padding:1.5mm 4mm;border-radius:1.5mm;letter-spacing:1px;flex:none}
-.label.half .from-tag{font-size:8pt;padding:1mm 2.5mm}
+.label.half    .from-tag{font-size:8pt;padding:1mm 2.5mm}
+.label.quarter .from-tag{font-size:6.5pt;padding:.6mm 2mm}
 .from-txt{min-width:0;flex:1}
 .from-brand{font-size:13pt;font-weight:800;color:var(--navy);line-height:1.2}
 .from-brand em{font-style:normal;color:var(--orange)}
-.label.half .from-brand{font-size:10.5pt}
+.label.half    .from-brand{font-size:10.5pt}
+.label.quarter .from-brand{font-size:8.5pt;line-height:1}
 .from-lines{font-size:10.5pt;line-height:1.45;color:#334155;margin-top:1mm}
-.label.half .from-lines{font-size:8pt;line-height:1.4}
+.label.half    .from-lines{font-size:8pt;line-height:1.4}
+.label.quarter .from-lines{font-size:6pt;line-height:1.25;margin-top:.5mm}
 .from-lines .num{font-weight:700;color:var(--navy)}
 
 /* ---- TO (นำส่ง) ---- */
 .to{flex:1;min-height:0;padding-top:6mm;display:flex;flex-direction:column}
-.label.half .to{padding-top:4mm}
+.label.half    .to{padding-top:4mm}
+.label.quarter .to{padding-top:2mm}
 .to-tag{align-self:flex-start;background:var(--orange);color:#fff;font-size:12pt;font-weight:800;padding:1.5mm 5mm;border-radius:1.5mm;letter-spacing:2px;flex:none}
-.label.half .to-tag{font-size:9pt;padding:1mm 3.5mm;letter-spacing:1px}
+.label.half    .to-tag{font-size:9pt;padding:1mm 3.5mm;letter-spacing:1px}
+.label.quarter .to-tag{font-size:7.5pt;padding:.7mm 2.5mm;letter-spacing:.5px}
 .to-person{font-size:19pt;font-weight:700;color:#1E293B;margin-top:4mm;line-height:1.25}
-.label.half .to-person{font-size:12pt;margin-top:3mm}
+.label.half    .to-person{font-size:12pt;margin-top:3mm}
+.label.quarter .to-person{font-size:9pt;margin-top:1.5mm;line-height:1.2}
 .to-co{font-size:27pt;font-weight:800;color:var(--navy);line-height:1.2;margin-top:2mm;word-break:break-word}
-.label.half .to-co{font-size:15pt;margin-top:1.5mm;line-height:1.25}
+.label.half    .to-co{font-size:15pt;margin-top:1.5mm;line-height:1.25}
+.label.quarter .to-co{font-size:11.5pt;margin-top:1mm;line-height:1.2}
 .to-co .br{color:var(--orange)}
 .to-ad{font-size:19pt;line-height:1.5;color:#0F172A;margin-top:3.5mm;word-break:break-word}
-.label.half .to-ad{font-size:11.5pt;line-height:1.45;margin-top:2.5mm}
+.label.half    .to-ad{font-size:11.5pt;line-height:1.45;margin-top:2.5mm}
+.label.quarter .to-ad{font-size:8.5pt;line-height:1.35;margin-top:1.2mm}
 .to-tel{font-size:16pt;margin-top:3mm;color:#1E293B}
-.label.half .to-tel{font-size:10pt;margin-top:2mm}
+.label.half    .to-tel{font-size:10pt;margin-top:2mm}
+.label.quarter .to-tel{font-size:7.5pt;margin-top:1mm}
 .to-tel b{color:var(--navy);font-weight:700}
 .to-tel .num{font-weight:700}
 
 /* ---- แถบล่าง : บิล / PO / ระวังแตก ---- */
 .marks{margin-top:auto;padding-top:5mm;display:flex;gap:5mm;align-items:stretch;flex:none}
-.label.half .marks{padding-top:4mm;gap:3mm;flex-direction:column}
+.label.half    .marks{padding-top:4mm;gap:3mm;flex-direction:column}
+.label.quarter .marks{padding-top:2mm;gap:2mm;flex-direction:row}
 .mk{border-radius:2mm;padding:4mm 5mm;display:flex;align-items:center;justify-content:center;gap:3.5mm;text-align:center}
-.label.half .mk{padding:2.5mm 3mm;gap:2.5mm}
+.label.half    .mk{padding:2.5mm 3mm;gap:2.5mm}
+.label.quarter .mk{padding:2mm 2.5mm;gap:1.5mm}
 
 .mk-bill{border:2.5px dashed var(--navy);color:var(--navy);background:#F8FAFC;flex:1}
 .mk-bill .t{font-size:19pt;font-weight:800;line-height:1.15;white-space:nowrap}
 .mk-bill .s{display:block;font-size:8pt;font-weight:600;color:#64748B;letter-spacing:1px}
-.label.half .mk-bill{border-width:2px}
-.label.half .mk-bill .t{font-size:12pt}
-.label.half .mk-bill .s{font-size:6.5pt}
+.label.half    .mk-bill{border-width:2px}
+.label.half    .mk-bill .t{font-size:12pt}
+.label.half    .mk-bill .s{font-size:6.5pt}
+.label.quarter .mk-bill{border-width:1.5px}
+.label.quarter .mk-bill .t{font-size:9pt;white-space:nowrap}
+.label.quarter .mk-bill .s{font-size:5.5pt}
 
 .mk-po{border:2.5px solid var(--navy);background:#fff;flex:1;flex-direction:column;gap:2mm;padding:3.5mm 4mm}
 .mk-po .k{font-size:10pt;font-weight:800;color:#fff;background:var(--navy);padding:1mm 3.5mm;border-radius:1.5mm;letter-spacing:.5px;flex:none}
@@ -148,25 +175,39 @@ details.cfg .body{padding:10px 0 0}
 .po-list.n4 .po-line .i{width:4mm;height:4mm;font-size:7pt}
 .po-list.n4{gap:1.2mm}
 .po-line.blank{border-bottom:2px solid var(--navy);min-height:8mm;min-width:42mm}
-.label.half .mk-po{border-width:2px;gap:1.2mm;padding:2.5mm 3mm}
-.label.half .mk-po .k{font-size:7.5pt;padding:.7mm 2.5mm}
-.label.half .po-list{gap:1.2mm}
-.label.half .po-line{gap:1.8mm}
-.label.half .po-line .i{width:3.6mm;height:3.6mm;font-size:6.5pt}
-.label.half .po-line .n{font-size:13pt}
-.label.half .po-list.n3 .po-line .n{font-size:10.5pt}
-.label.half .po-list.n4 .po-line .n{font-size:9pt}
-.label.half .po-list.n4 .po-line .i{width:3mm;height:3mm;font-size:5.5pt}
-.label.half .po-line.blank{min-height:5.5mm;min-width:30mm}
+.label.half    .mk-po{border-width:2px;gap:1.2mm;padding:2.5mm 3mm}
+.label.half    .mk-po .k{font-size:7.5pt;padding:.7mm 2.5mm}
+.label.half    .po-list{gap:1.2mm}
+.label.half    .po-line{gap:1.8mm}
+.label.half    .po-line .i{width:3.6mm;height:3.6mm;font-size:6.5pt}
+.label.half    .po-line .n{font-size:13pt}
+.label.half    .po-list.n3 .po-line .n{font-size:10.5pt}
+.label.half    .po-list.n4 .po-line .n{font-size:9pt}
+.label.half    .po-list.n4 .po-line .i{width:3mm;height:3mm;font-size:5.5pt}
+.label.half    .po-line.blank{min-height:5.5mm;min-width:30mm}
+.label.quarter .mk-po{border-width:1.5px;gap:.8mm;padding:1.5mm 2mm}
+.label.quarter .mk-po .k{font-size:6.5pt;padding:.4mm 1.8mm}
+.label.quarter .po-list{gap:.8mm}
+.label.quarter .po-line{gap:1.2mm}
+.label.quarter .po-line .i{width:3mm;height:3mm;font-size:5.5pt}
+.label.quarter .po-line .n{font-size:10pt}
+.label.quarter .po-list.n3 .po-line .n{font-size:8.5pt}
+.label.quarter .po-list.n4 .po-line .n{font-size:7pt}
+.label.quarter .po-list.n4 .po-line .i{width:2.5mm;height:2.5mm;font-size:4.5pt}
+.label.quarter .po-line.blank{min-height:4mm;min-width:24mm}
 
 .mk-frag{border:3px solid var(--red);background:#FEF2F2;color:var(--red);flex:1.4}
 .mk-frag .t{font-size:34pt;font-weight:800;line-height:1.05;letter-spacing:1px;white-space:nowrap}
 .mk-frag .s{display:block;font-size:10pt;font-weight:800;letter-spacing:4px}
-.label.half .mk-frag{border-width:2.5px;flex:none}
-.label.half .mk-frag .t{font-size:20pt}
-.label.half .mk-frag .s{font-size:7pt;letter-spacing:2px}
+.label.half    .mk-frag{border-width:2.5px;flex:none}
+.label.half    .mk-frag .t{font-size:20pt}
+.label.half    .mk-frag .s{font-size:7pt;letter-spacing:2px}
+.label.quarter .mk-frag{border-width:2px;flex:1.3}
+.label.quarter .mk-frag .t{font-size:15pt}
+.label.quarter .mk-frag .s{font-size:6pt;letter-spacing:1px}
 .mk .ic{font-size:26pt;line-height:1}
-.label.half .mk .ic{font-size:16pt}
+.label.half    .mk .ic{font-size:16pt}
+.label.quarter .mk .ic{font-size:12pt}
 
 .ph{align-items:center;justify-content:center;color:#94A3B8;font-size:16pt;border-style:dashed;text-align:center}
 
@@ -207,8 +248,9 @@ details.cfg .body{padding:10px 0 0}
       <h2>2. รูปแบบการพิมพ์</h2>
       <div class="body">
         <div class="seg" id="seg">
-          <button data-size="full" class="on">เต็มหน้า<small>A4 นอน · กล่องใหญ่</small></button>
-          <button data-size="half">ครึ่งหน้า<small>พับแนวตั้ง · กล่องเล็ก</small></button>
+          <button data-size="full" class="on">1 ใบ/แผ่น<small>เต็มหน้า · กล่องใหญ่</small></button>
+          <button data-size="half">2 ใบ/แผ่น<small>พับแนวตั้ง · กล่องเล็ก</small></button>
+          <button data-size="quarter">4 ใบ/แผ่น<small>2×2 · กล่องจิ๋ว</small></button>
         </div>
         <div class="hint" id="sizeHint">พิมพ์ 1 ใบเต็มแผ่น A4 แนวนอน (297 × 210 มม.)</div>
 
@@ -264,7 +306,7 @@ details.cfg .body{padding:10px 0 0}
 /* ============================================================
    ⚙️ CONFIG
    ============================================================ */
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz9M4MrnaycmmtAW_M5VtcIW48E284aDAiG9rdl24STqdUm5_aini6fNSuVbFJTGvGA/exec";   // ← วาง URL Web App ของชีท Address ตรงนี้
+const APPS_SCRIPT_URL = "";   // ← วาง URL Web App ของชีท Address ตรงนี้
 
 const SENDER = {
   name  : "ห้างหุ้นส่วนจำกัด เอ็นโซน เซอร์วิส (สาขา 00001)",
@@ -369,17 +411,19 @@ function render(){
 }
 
 /* ---------- ใบปะหน้า ---------- */
-function labelHTML(r, half){
+// mode = "full" | "half" | "quarter"
+function labelHTML(r, mode){
+  const isQ = mode === "quarter";
   const from = `
     <div class="from">
       <div class="from-tag">จาก / FROM</div>
       <div class="from-txt">
         <div class="from-brand">EN<em>ZONE</em> SERVICE</div>
         <div class="from-lines">
-          ${esc(SENDER.name)}<br>
-          ${esc(SENDER.line1)}<br>
-          ${esc(SENDER.line2)}<br>
-          โทร <span class="num">${esc(SENDER.tel)}</span>
+          ${isQ
+            ? esc(SENDER.line1) + " " + esc(SENDER.line2) + " · โทร <span class='num'>" + esc(SENDER.tel) + "</span>"
+            : esc(SENDER.name) + "<br>" + esc(SENDER.line1) + "<br>" + esc(SENDER.line2) + "<br>โทร <span class='num'>" + esc(SENDER.tel) + "</span>"
+          }
         </div>
       </div>
     </div>`;
@@ -410,7 +454,7 @@ function labelHTML(r, half){
 
   const marks = (bill||po||frag) ? `<div class="marks">${bill}${po}${frag}</div>` : "";
 
-  return `<div class="label ${half?"half":"full"}">
+  return `<div class="label ${mode}">
     ${from}
     <div class="to">
       <div class="to-tag">นำส่ง / TO</div>
@@ -435,12 +479,16 @@ function draw(){
   }
   if(state.size === "half"){
     sheet.className = "sheet two";
-    const one = `<div class="slot">${labelHTML(r,true)}</div>`;
+    const one = `<div class="slot">${labelHTML(r,"half")}</div>`;
     const two = state.copies === 2 ? one : '<div class="slot"></div>';
     sheet.innerHTML = '<div class="fold"></div>' + one + two;
+  }else if(state.size === "quarter"){
+    sheet.className = "sheet four";
+    const cell = `<div class="slot quarter">${labelHTML(r,"quarter")}</div>`;
+    sheet.innerHTML = '<div class="fold-v"></div><div class="fold-h"></div>' + cell + cell + cell + cell;
   }else{
     sheet.className = "sheet";
-    sheet.innerHTML = labelHTML(r,false);
+    sheet.innerHTML = labelHTML(r,"full");
   }
   fit();
 }
@@ -459,11 +507,13 @@ $("#seg").addEventListener("click", e=>{
   [...$("#seg").children].forEach(x=>x.classList.remove("on"));
   b.classList.add("on");
   state.size = b.dataset.size;
-  const half = state.size === "half";
-  $("#copiesBox").style.display = half ? "block" : "none";
-  $("#sizeHint").innerHTML = half
-    ? "พิมพ์ A4 แนวนอน แล้ว<b>พับ/ตัดตามเส้นประแนวตั้ง</b> → ได้ใบขนาด 148.5 × 210 มม. (ด้านยาวเพียง 21 ซม. เหมาะกับกล่องเล็ก)"
-    : "พิมพ์ 1 ใบเต็มแผ่น A4 แนวนอน (297 × 210 มม.)";
+  $("#copiesBox").style.display = state.size === "half" ? "block" : "none";
+  const hints = {
+    full    : "พิมพ์ 1 ใบเต็มแผ่น A4 แนวนอน (297 × 210 มม.) เหมาะกับกล่องขนาดใหญ่",
+    half    : "พิมพ์ A4 แนวนอน แล้ว<b>ตัดตามเส้นประแนวตั้ง</b> → ได้ 2 ใบ ขนาด 148.5 × 210 มม. (สูง 21 ซม. เหมาะกล่องเล็ก)",
+    quarter : "พิมพ์ A4 แนวนอน แล้ว<b>ตัดตามเส้นประ 2 แนว</b> → ได้ 4 ใบ ขนาด 148.5 × 105 มม. เหมาะกับกล่องจิ๋ว"
+  };
+  $("#sizeHint").innerHTML = hints[state.size] || "";
   draw();
 });
 $("#copies").addEventListener("change", e=>{ state.copies = +e.target.value; draw(); });
