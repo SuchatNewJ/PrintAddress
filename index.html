@@ -208,7 +208,17 @@ details.cfg .body{padding:10px 0 0}
 .mk .ic{font-size:26pt;line-height:1}
 .label.half    .mk .ic{font-size:16pt}
 .label.quarter .mk .ic{font-size:12pt}
-
+/* ---- แบนเนอร์ "ส่งที่สโตร์เท่านั้น" (พื้นที่กลาง) ---- */
+.store-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:2mm 0}
+.store-only{
+  border:3.5px solid var(--red);background:#FEF2F2;color:var(--red);
+  border-radius:3mm;padding:4mm 10mm;text-align:center;white-space:nowrap;
+  font-size:52pt;font-weight:800;line-height:1.15;letter-spacing:1px
+}
+.label.half    .store-only{font-size:27pt;padding:2.5mm 5mm;border-width:2.5px;letter-spacing:0}
+.label.quarter .store-only{font-size:15pt;padding:1mm 3mm;border-width:2px;letter-spacing:0}
+.label.quarter .store-wrap{padding:.5mm 0}
+   
 .ph{align-items:center;justify-content:center;color:#94A3B8;font-size:16pt;border-style:dashed;text-align:center}
 
 /* ---------- PRINT ---------- */
@@ -318,6 +328,10 @@ const SENDER = {
 // บริษัท/สาขาที่ต้องมีกล่อง PO (ต้องพบครบทุกคำในชุด)
 const PO_RULES = [ ["ศรีตรัง","สกลนคร"] ];
 
+// บริษัท/สาขาที่ต้องแสดงข้อความ "ส่งที่สโตร์ เท่านั้น !!" (ต้องพบครบทุกคำในชุด)
+const STORE_ONLY_RULES = [ ["ไทยฮั้วยางพารา","ยโสธร"] ];
+const STORE_ONLY_TEXT  = "ส่งที่สโตร์ เท่านั้น !!";
+
 /* ============================================================ */
 const $ = s => document.querySelector(s);
 const state = { rows:[], sel:null, size:"full", copies:2 };
@@ -349,6 +363,11 @@ const needPO = r => {
   return PO_RULES.some(ws => ws.every(w => t.includes(norm(w))));
 };
 
+const needStoreOnly = r => {
+  const t = norm(r.company+" "+r.branch+" "+r.address);
+  return STORE_ONLY_RULES.some(ws => ws.every(w => t.includes(norm(w))));
+};
+   
 const DEMO = [
   {"บริษัท":"บริษัท ศรีตรังแอโกรอินดัสทรี จำกัด (มหาชน)","สาขา":"สาขาสกลนคร","ที่อยู่":"192 หมู่ที่ 9 ต.นาเพียง อ.กุสุมาลย์ จ.สกลนคร 47230","ผู้ติดต่อ":"คุณอุมาภรณ์ ดวงพรหม","โทร":"042-091-001 ต่อ 1301, 098-156-4291"},
   {"บริษัท":"บริษัท ศรีตรังแอโกรอินดัสทรี จำกัด (มหาชน)","สาขา":"สาขาพิษณุโลก","ที่อยู่":"88 หมู่ 3 ต.วังพิกุล อ.วังทอง จ.พิษณุโลก 65130","ผู้ติดต่อ":"แผนกซ่อมบำรุง","โทร":"055-000-000"},
@@ -453,6 +472,9 @@ function labelHTML(r, mode){
     </div>` : "";
 
   const marks = (bill||po||frag) ? `<div class="marks">${bill}${po}${frag}</div>` : "";
+  const storeOnly = needStoreOnly(r)
+  ? `<div class="store-wrap"><div class="store-only">${esc(STORE_ONLY_TEXT)}</div></div>`
+  : "";
 
   return `<div class="label ${mode}">
     ${from}
@@ -462,6 +484,7 @@ function labelHTML(r, mode){
       <div class="to-co">${esc(r.company)}${r.branch ? ` <span class="br">${esc(r.branch)}</span>` : ""}</div>
       <div class="to-ad">${esc(r.address)}</div>
       ${r.phone ? `<div class="to-tel"><b>โทร</b> <span class="num">${esc(r.phone)}</span></div>` : ""}
+      ${storeOnly}
     </div>
     ${marks}
   </div>`;
